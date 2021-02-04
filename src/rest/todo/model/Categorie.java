@@ -1,5 +1,6 @@
 package rest.todo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Categorie {
@@ -12,6 +13,8 @@ public class Categorie {
 
     public Categorie(String name) {
         this.name = name;
+        sousCategorie = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
     public List<Categorie> getSousCategorie() {
