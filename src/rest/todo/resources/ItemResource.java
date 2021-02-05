@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.JAXBElement;
 
-//import rest.todo.dao.ItemDao;
+import rest.todo.dao.ItemDao;
 import rest.todo.model.Item;
 
 public class ItemResource {
@@ -33,7 +33,7 @@ public class ItemResource {
     @GET
     @Produces( {MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON} )
     public Item getItem(){
-        Item item = ItemDao.instance.getModel().get(id);
+        Item item = ItemDao.getInstance().getModel().get(id);
         if(item == null){
             throw new RuntimeException("Get: Article avec l'id " + id + " n'a pas été trouvé");
         }
@@ -44,7 +44,7 @@ public class ItemResource {
     @GET
     @Produces( MediaType.TEXT_XML )
     public Item getItemHTML(){
-        Item item = ItemDao.instance.getModel().get(id);
+        Item item = ItemDao.getInstance().getModel().get(id);
         if(item == null){
             throw new RuntimeException("Get: Article avec l'id " + id + " n'a pas été trouvé");
         }
@@ -61,7 +61,7 @@ public class ItemResource {
 
     @DELETE
     public void deleteItem(){
-        Item i = ItemDao.instance.getModel().remove(id);
+        Item i = ItemDao.getInstance().getModel().remove(id);
         if(i == null){
             throw RuntimeException("Delete : Article avec l'id "+ id + " n'a pas été trouvé");
         }
@@ -70,13 +70,13 @@ public class ItemResource {
 
     private Response putAndGetResponse(Item item){
         Response res;
-        if(ItemDao.instance.getModel().containsKey(item.getId())){
+        if(ItemDao.getInstance().getModel().containsKey(item.getId())){
             res = Response.noContent.build();
         }
         else {
             res = Response.created(uriInfo.getAbsolutePath()).build;
         }
-        ItemDao.instance.getModel().put(item.getId(), item);
+        ItemDao.getInstance().getModel().put(item.getId(), item);
         return res;
     }
 }
