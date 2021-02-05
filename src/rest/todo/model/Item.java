@@ -6,6 +6,11 @@ public class Item {
     private String libelle;
     private String photo;
 
+    public Item(String libelle, String marque, double prix) {
+        this.marque = marque;
+        this.prix = prix;
+        this.libelle = libelle;
+    }
 
     public String getMarque() {
         return marque;
@@ -23,6 +28,8 @@ public class Item {
         this.prix = prix;
     }
 
+
+
     public String getLibelle() {
         return libelle;
     }
@@ -37,5 +44,16 @@ public class Item {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Item{");
+        sb.append("marque='").append(marque).append('\'');
+        sb.append(", prix=").append(prix);
+        sb.append(", libelle='").append(libelle).append('\'');
+        sb.append(", photo='").append(photo).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
