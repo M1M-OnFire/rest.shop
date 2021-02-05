@@ -4,21 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Categorie {
+
+    private static int idCount;
+
+    private String id;
     private List<Categorie> sousCategorie;
     private String name;
     private List<Item> items;
-
-    public Categorie() {
-    }
 
     public Categorie(String name) {
         this.name = name;
         sousCategorie = new ArrayList<>();
         items = new ArrayList<>();
+        id = Integer.toString(idCount++);
     }
 
     public List<Categorie> getSousCategorie() {
         return sousCategorie;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setSousCategorie(List<Categorie> sousCategorie) {

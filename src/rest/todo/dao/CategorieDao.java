@@ -4,65 +4,67 @@ import rest.todo.model.Categorie;
 import rest.todo.model.Item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CategorieDao {
 
     private static CategorieDao instance = null;
 
-    private List<Categorie> contentProvider = new ArrayList<>();
+    private Map<String, Categorie> contentProvider = new HashMap<>();
 
     private CategorieDao() {
 
         ItemDao itemDao = ItemDao.getInstance();
 
-        List<Item> items = itemDao.getModel();
+        Map<String, Item> items = itemDao.getModel();
 
-        contentProvider.add(new Categorie("Ordinateur"));
-        contentProvider.add(new Categorie("Téléphonies"));
-        contentProvider.add(new Categorie("Stockage"));
+        contentProvider.put("1",new Categorie("Ordinateur"));
+        contentProvider.put("2",new Categorie("Téléphonies"));
+        contentProvider.put("3",new Categorie("Stockage"));
 
         //Ordinateur
-        contentProvider.get(0).addSousCategories(new Categorie("PC Portable"));
-        contentProvider.get(0).addSousCategories(new Categorie("PC de Bureau"));
-        contentProvider.get(0).addSousCategories(new Categorie("Accessoires"));
+        contentProvider.get("1").addSousCategories(new Categorie("PC Portable"));
+        contentProvider.get("1").addSousCategories(new Categorie("PC de Bureau"));
+        contentProvider.get("1").addSousCategories(new Categorie("Accessoires"));
 
             //PC Portable
-        contentProvider.get(0).getSousCategorie().get(0).getItems().add(items.get(0));
-        contentProvider.get(0).getSousCategorie().get(0).getItems().add(items.get(1));
+        contentProvider.get("1").getSousCategorie().get(0).getItems().add(items.get("1"));
+        contentProvider.get("1").getSousCategorie().get(0).getItems().add(items.get("2"));
 
             //PC de bureau
-        contentProvider.get(0).getSousCategorie().get(1).getItems().add(items.get(2));
-        contentProvider.get(0).getSousCategorie().get(1).getItems().add(items.get(3));
+        contentProvider.get("1").getSousCategorie().get(1).getItems().add(items.get("3"));
+        contentProvider.get("1").getSousCategorie().get(1).getItems().add(items.get("4"));
             //Accessoire
-        contentProvider.get(0).getSousCategorie().get(2).getItems().add(items.get(4));
+        contentProvider.get("1").getSousCategorie().get(2).getItems().add(items.get("5"));
 
         //Telephonie
-        contentProvider.get(1).addSousCategories(new Categorie("Smartphone"));
-        contentProvider.get(1).addSousCategories(new Categorie("Téléphone fixe"));
-        contentProvider.get(1).addSousCategories(new Categorie("Accessoires"));
+        contentProvider.get("2").addSousCategories(new Categorie("Smartphone"));
+        contentProvider.get("2").addSousCategories(new Categorie("Téléphone fixe"));
+        contentProvider.get("2").addSousCategories(new Categorie("Accessoires"));
 
             //Smartphone
-        contentProvider.get(1).getSousCategorie().get(0).getItems().add(items.get(5));
-        contentProvider.get(1).getSousCategorie().get(0).getItems().add(items.get(6));
+        contentProvider.get("2").getSousCategorie().get(0).getItems().add(items.get("6"));
+        contentProvider.get("2").getSousCategorie().get(0).getItems().add(items.get("7"));
             //Tel fixe
-        contentProvider.get(1).getSousCategorie().get(1).getItems().add(items.get(7));
+        contentProvider.get("2").getSousCategorie().get(1).getItems().add(items.get("8"));
             //Accessoire
-        contentProvider.get(1).getSousCategorie().get(2).getItems().add(items.get(8));
+        contentProvider.get("2").getSousCategorie().get(2).getItems().add(items.get("9"));
 
 
-        contentProvider.get(2).addSousCategories(new Categorie("Disque dur"));
-        contentProvider.get(2).addSousCategories(new Categorie("Clé usb"));
-        contentProvider.get(2).addSousCategories(new Categorie("Accessoires"));
+        contentProvider.get("3").addSousCategories(new Categorie("Disque dur"));
+        contentProvider.get("3").addSousCategories(new Categorie("Clé usb"));
+        contentProvider.get("3").addSousCategories(new Categorie("Accessoires"));
 
         //Smartphone
-        contentProvider.get(2).getSousCategorie().get(0).getItems().add(items.get(8));
-        contentProvider.get(2).getSousCategorie().get(0).getItems().add(items.get(10));
+        contentProvider.get("3").getSousCategorie().get(0).getItems().add(items.get("10"));
+        contentProvider.get("3").getSousCategorie().get(0).getItems().add(items.get("11"));
         //Tel fixe
-        contentProvider.get(2).getSousCategorie().get(1).getItems().add(items.get(11));
-        contentProvider.get(2).getSousCategorie().get(1).getItems().add(items.get(12));
+        contentProvider.get("3").getSousCategorie().get(1).getItems().add(items.get("12"));
+        contentProvider.get("3").getSousCategorie().get(1).getItems().add(items.get("13"));
         //Accessoire
-        contentProvider.get(2).getSousCategorie().get(2).getItems().add(items.get(13));
+        contentProvider.get("3").getSousCategorie().get(2).getItems().add(items.get("14"));
 
     }
 
@@ -75,7 +77,7 @@ public class CategorieDao {
         }
     }
 
-    public List<Categorie> getModel(){
+    public Map<String, Categorie> getModel(){
         return contentProvider;
     }
 
