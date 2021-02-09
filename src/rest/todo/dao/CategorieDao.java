@@ -70,11 +70,9 @@ public class CategorieDao {
 
     public static CategorieDao getInstance() {
         if(instance == null){
-            return new CategorieDao();
+            instance = new CategorieDao();
         }
-        else {
-            return instance;
-        }
+        return instance;
     }
 
     public Map<String, Categorie> getModel(){

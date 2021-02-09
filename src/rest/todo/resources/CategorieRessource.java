@@ -6,6 +6,7 @@ import rest.todo.model.Categorie;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.xml.bind.JAXBElement;
+import java.util.List;
 
 public class CategorieRessource {
     @Context
@@ -26,9 +27,20 @@ public class CategorieRessource {
     public Categorie getCategorie(){
         Categorie categorie = CategorieDao.getInstance().getModel().get(id);
         if(categorie == null){
-            throw new RuntimeException("Get: Article avec l'id " + id + " n'a pas été trouvé");
+            throw new RuntimeException("Get: Categorie avec l'id " + id + " n'a pas été trouvé");
         }
         return categorie;
+    }
+
+    @GET
+    @Path("sous-categories")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Categorie> getSousCategorie() {
+        Categorie categorie = CategorieDao.getInstance().getModel().get(id);
+        if(categorie == null){
+            throw new RuntimeException("Get: Categorie avec l'id " + id + " n'a pas été trouvé");
+        }
+        return categorie.getSousCategorie();
     }
 
 
@@ -37,7 +49,7 @@ public class CategorieRessource {
     public Categorie getCategorieHTML(){
         Categorie categorie = CategorieDao.getInstance().getModel().get(id);
         if(categorie == null){
-            throw new RuntimeException("Get: Article avec l'id " + id + " n'a pas été trouvé");
+            throw new RuntimeException("Get: Categorie avec l'id " + id + " n'a pas été trouvé");
         }
         return categorie;
     }
@@ -54,7 +66,7 @@ public class CategorieRessource {
     public void deleteCategorie(){
         Categorie i = CategorieDao.getInstance().getModel().remove(id);
         if(i == null){
-            throw new RuntimeException("Delete : Article avec l'id "+ id + " n'a pas été trouvé");
+            throw new RuntimeException("Delete : Categorie avec l'id "+ id + " n'a pas été trouvé");
         }
     }
 

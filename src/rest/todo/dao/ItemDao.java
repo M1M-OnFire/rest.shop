@@ -45,11 +45,9 @@ public class ItemDao {
 
     public static ItemDao getInstance() {
         if(instance == null){
-            return new ItemDao();
+            instance = new ItemDao();
         }
-        else {
-            return instance;
-        }
+        return instance;
     }
 
     public Map<String, Item> getModel(){
