@@ -1,11 +1,14 @@
 package rest.todo.resources;
 
 import rest.todo.dao.CategorieDao;
+import rest.todo.dao.ItemDao;
 import rest.todo.model.Categorie;
+import rest.todo.model.Item;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.xml.bind.JAXBElement;
+import java.util.List;
 
 public class CategorieRessource {
     @Context
@@ -56,6 +59,12 @@ public class CategorieRessource {
         if(i == null){
             throw new RuntimeException("Delete : Article avec l'id "+ id + " n'a pas été trouvé");
         }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Item> getItems(){
+        return CategorieDao.getInstance().getModel().get(id).getItems();
     }
 
 
