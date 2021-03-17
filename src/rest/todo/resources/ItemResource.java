@@ -63,7 +63,7 @@ public class ItemResource {
     public void deleteItem(){
         Item i = ItemDao.getInstance().getModel().remove(id);
         if(i == null){
-            throw RuntimeException("Delete : Article avec l'id "+ id + " n'a pas été trouvé");
+            throw new RuntimeException("Delete : Article avec l'id "+ id + " n'a pas été trouvé");
         }
     }
 
@@ -71,10 +71,10 @@ public class ItemResource {
     private Response putAndGetResponse(Item item){
         Response res;
         if(ItemDao.getInstance().getModel().containsKey(item.getId())){
-            res = Response.noContent.build();
+            res = Response.noContent().build();
         }
         else {
-            res = Response.created(uriInfo.getAbsolutePath()).build;
+            res = Response.created(uriInfo.getAbsolutePath()).build();
         }
         ItemDao.getInstance().getModel().put(item.getId(), item);
         return res;

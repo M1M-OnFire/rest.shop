@@ -1,6 +1,8 @@
 package rest.todo.model;
 
 public class Item {
+    private static int idCount = 0;
+    private String id;
     private String marque;
     private double prix;
     private String libelle;
@@ -10,6 +12,15 @@ public class Item {
         this.marque = marque;
         this.prix = prix;
         this.libelle = libelle;
+        this.id = Integer.toString(idCount++);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMarque() {
