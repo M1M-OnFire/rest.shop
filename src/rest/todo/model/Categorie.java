@@ -9,6 +9,10 @@ public class Categorie {
 
     private String id;
     private List<Categorie> sousCategorie;
+
+    public Categorie() {
+    }
+
     private String name;
     private List<Item> items;
 
