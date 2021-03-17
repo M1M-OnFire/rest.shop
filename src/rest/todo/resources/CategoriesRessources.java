@@ -3,13 +3,10 @@ package rest.todo.resources;
 
 import rest.todo.dao.CategorieDao;
 import rest.todo.model.Categorie;
-
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Path("/categories")
 public class CategoriesRessources {
@@ -24,15 +21,12 @@ public class CategoriesRessources {
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Categorie> getTodosBrowser() {
-        List<Categorie> categories = new ArrayList<>();
-        categories.addAll(CategorieDao.getInstance().getModel().values());
-        return categories;
+        return new ArrayList<>(CategorieDao.getInstance().getModel().values());
     }
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     public Response newCategorie(Categorie newCategorie) {
-        Categorie categorie = new Categorie(newCategorie.getName());
         String newId = Integer.toString(CategorieDao.getInstance().getModel().size() + 1);
         CategorieDao.getInstance().getModel().put(newId, newCategorie);
         String result = "Record entered: "+ CategorieDao.getInstance().getModel().get(newId);
@@ -40,7 +34,7 @@ public class CategoriesRessources {
     }
 
     @Path("{categorie}")
-    public CategorieRessource getTodo(@PathParam("categorie") String id) {
+    public CategorieRessource getCategorie(@PathParam("categorie") String id) {
         return new CategorieRessource(uriInfo, request, id);
     }
 }

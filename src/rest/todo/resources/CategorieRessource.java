@@ -25,7 +25,7 @@ public class CategorieRessource {
     }
 
     @GET
-    @Produces( {MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON} )
+    @Produces( {MediaType.APPLICATION_JSON} )
     public Categorie getCategorie(){
         Categorie categorie = CategorieDao.getInstance().getModel().get(id);
         if(categorie == null){
@@ -35,7 +35,7 @@ public class CategorieRessource {
     }
 
     @GET
-    @Path("sous-categories")
+    @Path("/sous-categories")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Categorie> getSousCategorie() {
         Categorie categorie = CategorieDao.getInstance().getModel().get(id);
@@ -46,22 +46,11 @@ public class CategorieRessource {
     }
 
 
-    @GET
-    @Produces( MediaType.TEXT_XML )
-    public Categorie getCategorieHTML(){
-        Categorie categorie = CategorieDao.getInstance().getModel().get(id);
-        if(categorie == null){
-            throw new RuntimeException("Get: Categorie avec l'id " + id + " n'a pas été trouvé");
-        }
-        return categorie;
-    }
-
-
     @PUT
     @Consumes( MediaType.APPLICATION_XML )
     public Response putCategorie(JAXBElement<Categorie> categorie){
-        Categorie i = categorie.getValue();
-        return putAndGetResponse(i);
+        Categorie newCategorie = categorie.getValue();
+        return putAndGetResponse(newCategorie);
     }
 
     @DELETE
@@ -71,13 +60,6 @@ public class CategorieRessource {
             throw new RuntimeException("Delete : Categorie avec l'id "+ id + " n'a pas été trouvé");
         }
     }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Item> getItems(){
-        return CategorieDao.getInstance().getModel().get(id).getItems();
-    }
-
 
     private Response putAndGetResponse(Categorie categorie){
         Response res;

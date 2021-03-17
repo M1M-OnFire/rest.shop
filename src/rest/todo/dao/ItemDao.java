@@ -11,7 +11,7 @@ public class ItemDao {
     private static ItemDao instance = null;
 
 //    private List<Item> contentProvider = new ArrayList<>();
-    private Map<String, Item> contentProvider = new HashMap<>();
+    private final Map<String, Item> contentProvider = new HashMap<>();
 
     private ItemDao() {
 
