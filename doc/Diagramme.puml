@@ -1,0 +1,66 @@
+@startuml diagram
+
+package boutique {
+    package model {
+        class Categorie {
+            - sousCategorie: Categorie
+            - name: string
+            - items: List<Item>
+            - getCategorie: string
+            - getsousCategorie: Categorie
+            + this(sousCategorie: Categorie, name: string)
+        }
+
+        class Item {
+            - marque: string
+            - prix: double
+            - libelle: string
+            - photo: string
+            + this(marque: string, prix: double, libelle: string, photo: string, categorie: Categorie)
+            + getlibelle(): string
+            + getPrix(): double
+            + getMarque(): string
+            + getPhoto(): string
+            + setlibelle(): void
+            + setPrix(): void
+            + setMarque(): void
+            + setPhoto(): void
+        }
+    }
+
+    package dao {
+        class ItemDao{
+            - contentProvider : Map<String, Item>
+            - this : ()
+            + getModel() : Map<String, Item>
+        }
+    }
+
+    package ressources {
+        class ItemRessource{
+            - uriInfo : UriInfo
+            - request : Request
+            - id : String
+            + this : (uriInfo : UriInfo , request Request , id : String)
+            + getItem() : Article
+            + getItemHTML() : Article
+            + putArticle(article : JAXBElement<Article>) : Response
+            + deleteTodo() : void
+            - putAndGetResponse(article : Article) : Response
+        }
+
+        class ItemsRessources{
+            - uriInfo : UriInfo
+            - request : Request
+            + getItemsBrowser() : List<Article>
+            + getItems() : List<Article>
+            + getCount() : String
+            + newItem(id :String, summary : String, description : String, servletResponse : HttpServletResponse) : void
+            + getItem(id : String) : ArticleRessource
+        }
+    }
+}
+
+Categorie *--> Categorie: "sous-categorie"
+Categorie *--> Item
+@enduml

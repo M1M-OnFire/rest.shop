@@ -19,6 +19,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
 import rest.todo.dao.TodoDao;
+import rest.todo.model.Item;
 import rest.todo.model.Todo;
 
 
