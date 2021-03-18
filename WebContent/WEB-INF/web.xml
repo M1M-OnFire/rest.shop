@@ -14,4 +14,12 @@
     <servlet-name>Jersey REST Service</servlet-name>
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
+  <filter>
+    <filter-name>RestCorsFilter</filter-name>
+    <filter-class>rest.todo.config.RestCorsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>RestCorsFilter</filter-name>
+    <url-pattern>/rest/*</url-pattern>
+  </filter-mapping>
 </web-app>
