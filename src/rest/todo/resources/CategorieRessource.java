@@ -10,7 +10,6 @@ import javax.ws.rs.core.*;
 import javax.xml.bind.JAXBElement;
 import java.util.List;
 
-
 public class CategorieRessource {
     @Context
     UriInfo uriInfo;
