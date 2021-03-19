@@ -15,10 +15,6 @@ public class Item {
         this.id = Integer.toString(idCount++);
     }
 
-    public Item() {
-        this.id = Integer.toString(idCount++);
-    }
-
     public String getId() {
         return id;
     }
