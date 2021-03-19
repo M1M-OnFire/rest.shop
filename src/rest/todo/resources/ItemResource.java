@@ -53,7 +53,7 @@ public class ItemResource {
 
 
     @PUT
-    @Consumes( MediaType.APPLICATION_XML )
+    @Consumes( MediaType.APPLICATION_JSON )
     public Response putItem(JAXBElement<Item> item){
         Item i = item.getValue();
         return putAndGetResponse(i);
