@@ -1,31 +1,27 @@
 package rest.todo.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Categorie {
 
-    private static int idCount;
+    private static int idCount = 1;
 
     private String id;
-    private List<Categorie> sousCategorie;
+    private String name;
+    private Set<Item> items;
+
 
     public Categorie() {
-    }
-
-    private String name;
-    private List<Item> items;
-
-    public Categorie(String name) {
-        this.name = name;
-        sousCategorie = new ArrayList<>();
-        items = new ArrayList<>();
         id = Integer.toString(idCount++);
     }
 
-    public List<Categorie> getSousCategorie() {
-        return sousCategorie;
+
+    public Categorie(String name) {
+        this();
+        this.name = name;
+        items = new HashSet<>();
     }
+
 
     public String getId() {
         return id;
@@ -33,14 +29,6 @@ public class Categorie {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setSousCategorie(List<Categorie> sousCategorie) {
-        this.sousCategorie = sousCategorie;
-    }
-
-    public void addSousCategories(Categorie categorie){
-        sousCategorie.add(categorie);
     }
 
     public String getName() {
@@ -51,21 +39,48 @@ public class Categorie {
         this.name = name;
     }
 
-    public List<Item> getItems() {
+    public Set<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(Set<Item> items) {
         this.items = items;
+    }
+
+    public void addItem(Item item){
+        items.add(item);
+    }
+
+    public void removeItem(Item item){
+        items.remove(item);
+    }
+
+    public void updateItem(Item item){
+        if(items.contains(item)){
+            items.remove(item);
+            items.add(item);
+        }
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Categorie{");
-        sb.append("sousCategorie=").append(sousCategorie);
         sb.append(", name='").append(name).append('\'');
         sb.append(", items=").append(items);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Categorie categorie = (Categorie) o;
+        return Objects.equals(id, categorie.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
