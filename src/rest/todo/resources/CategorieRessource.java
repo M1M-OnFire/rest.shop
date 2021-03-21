@@ -1,12 +1,13 @@
 package rest.todo.resources;
 
 import rest.todo.dao.CategorieDao;
+import rest.todo.dto.CategorieDTO;
 import rest.todo.model.Categorie;
 import rest.todo.model.Item;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import javax.xml.bind.JAXBElement;
+import javax.xml.ws.Response;
 import java.util.Set;
 
 
@@ -26,12 +27,13 @@ public class CategorieRessource {
 
     @GET
     @Produces( {MediaType.APPLICATION_JSON} )
-    public Categorie getCategorie(){
-        Categorie categorie = CategorieDao.getInstance().get(id);
-        if(categorie == null){
-            throw new RuntimeException("Get: Categorie avec l'id " + id + " n'a pas été trouvé");
-        }
-        return categorie;
+    public CategorieDTO getCategorie(){
+            Categorie categorie = CategorieDao.getInstance().get(id);
+            if(categorie == null){
+                throw new RuntimeException("Get: Categorie avec l'id " + id + " n'a pas été trouvé");
+            }
+            CategorieDTO categorieDTO = CategorieDTO.from(categorie);
+            return categorieDTO;
     }
 
     @GET

@@ -24,7 +24,7 @@ public class CategorieDao {
         Categorie telAccessoire = new Categorie("Accessoires telehpone");
 
         Categorie disqueDur = new Categorie("Disque dur");
-        Categorie cleUSB = new Categorie("Disque dur");
+        Categorie cleUSB = new Categorie("Clé usb");
         Categorie accessoireStockage = new Categorie("Accessoires stockage");
 
 
