@@ -21,33 +21,31 @@ public class CategorieDao {
 
         Categorie smartphone = new Categorie("Smartphone");
         Categorie telFixe = new Categorie("Telephone fixe");
-        Categorie telAccessoire = new Categorie("Accessoires telehpone");
+        Categorie telAccessoire = new Categorie("Accessoires telephone");
 
         Categorie disqueDur = new Categorie("Disque dur");
         Categorie cleUSB = new Categorie("Clé usb");
         Categorie accessoireStockage = new Categorie("Accessoires stockage");
 
 
-
+        //Ordinateur
         pcPortable.addItem(ItemDao.getInstance().get("1"));
         pcPortable.addItem(ItemDao.getInstance().get("2"));
-        pcBureau.addItem(ItemDao.getInstance().get("3"));
-        pcAccessoire.addItem(ItemDao.getInstance().get("4"));
+        pcPortable.addItem(ItemDao.getInstance().get("3"));
+        pcPortable.addItem(ItemDao.getInstance().get("4"));
+        pcAccessoire.addItem(ItemDao.getInstance().get("5"));
+        pcBureau.addItem(ItemDao.getInstance().get("8"));
 
-//        pcPortable.addItem(new Item("un item pc portable"));
-//        pcPortable.addItem(new Item("un autre item de  pc portable"));
-//        pcBureau.addItem(new Item("un item pc bureau"));
-//        pcAccessoire.addItem(new Item("un item pc accessoire"));
+        //Téléphonie
+        smartphone.addItem(ItemDao.getInstance().get("6"));
+        smartphone.addItem(ItemDao.getInstance().get("7"));
+        telAccessoire.addItem(ItemDao.getInstance().get("9"));
 
-//        smartphone.addItem(new Item("un item pc smartphone"));
-//        telFixe.addItem(new Item("un item tel fixe"));
-//        telAccessoire.addItem(new Item("un item tel accessoire"));
-//
-//        disqueDur.addItem(new Item("un item disque dur"));
-//        cleUSB.addItem(new Item("un item cle usb"));
-//        accessoireStockage.addItem(new Item("un item accessoire stockage"));
-
-
+        //Stockage
+        disqueDur.addItem(ItemDao.getInstance().get("10"));
+        disqueDur.addItem(ItemDao.getInstance().get("11"));
+        cleUSB.addItem(ItemDao.getInstance().get("12"));
+        accessoireStockage.addItem(ItemDao.getInstance().get("13"));
 
         data.add(pcPortable);
         data.add(pcBureau);
