@@ -6,7 +6,6 @@ import javax.ws.rs.core.*;
 import rest.todo.dao.CategorieDao;
 import rest.todo.dao.ItemDao;
 import rest.todo.dto.ItemCategorieDTO;
-import rest.todo.model.Categorie;
 import rest.todo.model.Item;
 
 import java.util.Set;
@@ -28,8 +27,8 @@ public class ItemsResource {
 // recuperer tt les items
     @GET
     @Produces(MediaType.APPLICATION_JSON )
-    public Set<Item> getall() {
-        return ItemDao.getInstance().getAll();
+    public Set<ItemCategorieDTO> getall() {
+        return ItemDao.getInstance().getAllItemCategorie();
     }
 
     @POST

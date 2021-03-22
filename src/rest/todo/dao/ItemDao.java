@@ -1,5 +1,6 @@
 package rest.todo.dao;
 
+import rest.todo.dto.ItemCategorieDTO;
 import rest.todo.model.Item;
 
 import java.util.*;
@@ -51,6 +52,20 @@ public class ItemDao {
 
     public Set<Item> getAll(){
         return data;
+    }
+
+    public Set<ItemCategorieDTO> getAllItemCategorie(){
+        Set<ItemCategorieDTO> itemCategorieSet = new HashSet<>();
+        data.forEach(item -> {
+            CategorieDao.getInstance()
+                    .getAll()
+                    .forEach(categorie -> {
+                        if(categorie.getItems().contains(item)){
+                            itemCategorieSet.add(new ItemCategorieDTO(categorie.getId(), item));
+                        }
+                    });
+        });
+        return itemCategorieSet;
     }
 
     public void update(Item item){
