@@ -3,6 +3,7 @@ package rest.todo.dto;
 import rest.todo.model.Item;
 
 public class ItemCategorieDTO {
+
     private String categorieId;
     private Item item;
 
