@@ -1,23 +1,32 @@
 package rest.todo.model;
 
+import java.util.Objects;
+
 public class Item {
-    private static int idCount = 0;
+    private static int idCount = 1;
     private String id;
     private String marque;
     private double prix;
     private String libelle;
     private String photo;
-
-    public Item(String libelle, String marque, double prix) {
-        this.marque = marque;
-        this.prix = prix;
-        this.libelle = libelle;
-        this.id = Integer.toString(idCount++);
-    }
+    private String description;
 
     public Item() {
         this.id = Integer.toString(idCount++);
     }
+
+    public Item(String libelle){
+        this();
+        this.libelle = libelle;
+    }
+
+    public Item(String libelle, String marque, double prix) {
+        this();
+        this.marque = marque;
+        this.prix = prix;
+        this.libelle = libelle;
+    }
+
 
     public String getId() {
         return id;
@@ -61,6 +70,14 @@ public class Item {
         this.photo = photo;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Item{");
@@ -70,5 +87,18 @@ public class Item {
         sb.append(", photo='").append(photo).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(id, item.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

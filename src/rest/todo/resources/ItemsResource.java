@@ -5,11 +5,11 @@ import javax.ws.rs.core.*;
 
 import rest.todo.dao.CategorieDao;
 import rest.todo.dao.ItemDao;
-import rest.todo.model.Categorie;
+import rest.todo.dto.CategorieInItemDTO;
+import rest.todo.dto.ItemCategorieDTO;
 import rest.todo.model.Item;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Path("/items")
 public class ItemsResource {
@@ -27,27 +27,40 @@ public class ItemsResource {
 
 // recuperer tt les items
     @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON} )
-    public List<Item> getall() {
-        return new ArrayList<>(ItemDao.getInstance().getModel().values());
+    @Produces(MediaType.APPLICATION_JSON )
+    public Set<CategorieInItemDTO> getall() {
+        return ItemDao.getInstance().getAllItemCategorie();
     }
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response newItem(Item newItem) {
-        String newId = Integer.toString(ItemDao.getInstance().getModel().size() + 1);
-        ItemDao.getInstance().getModel().put(newId, newItem);
-        String result = "Record entered: "+ ItemDao.getInstance().getModel().get(newId);
-        return Response.status(201).entity(result).build();
+    public Response newItem(ItemCategorieDTO itemCategorieDTO) {
+        ItemDao.getInstance().add(itemCategorieDTO.getItem());
+        CategorieDao.getInstance()
+                .get(itemCategorieDTO.getCategorieId())
+                .addItem(itemCategorieDTO.getItem());
+        return Response.status(201).build();
     }
 
-// liste de tt les items d'une categorie
-//    @Path("Categorie")
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Item> getalll() {
-//        Item item= ItemDao.instance.getModel().get(id);
-//        return Itemdao.getAll();
-//    }
+    @PUT
+    @Consumes( MediaType.APPLICATION_JSON )
+    public Response putItem(Item i){
+        return putAndGetResponse(i);
+    }
+
+    private Response putAndGetResponse(Item item){
+        Response res;
+
+        if(!ItemDao.getInstance().getAll().contains(item)){
+            res = Response.noContent().status(Response.Status.NOT_FOUND).build();
+        }
+        else {
+            res = Response.created(uriInfo.getAbsolutePath()).status(Response.Status.ACCEPTED).build();
+            ItemDao.getInstance().update(item);
+            CategorieDao.getInstance().updateItem(item);
+        }
+        return res;
+    }
+
 
 }
