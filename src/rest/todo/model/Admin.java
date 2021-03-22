@@ -29,16 +29,6 @@ public class Admin {
         this.password = password;
     }
 
-    public static String hashPassword(String password){
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(password.getBytes());
-            return DatatypeConverter.printHexBinary(md.digest()).toUpperCase();
-        }
-        catch (NoSuchAlgorithmException exception) {
-            throw new RuntimeException("Erreur lors du hash du mot de passe");
-        }
+    public Admin() {
     }
-
-
 }
