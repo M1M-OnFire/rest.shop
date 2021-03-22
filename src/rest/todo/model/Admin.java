@@ -21,7 +21,7 @@ public class Admin {
     }
 
     public void setPassword(String password) {
-        this.password = hashPassword(password);
+        this.password = password;
     }
 
     public Admin(String username, String password) {
@@ -39,4 +39,6 @@ public class Admin {
             throw new RuntimeException("Erreur lors du hash du mot de passe");
         }
     }
+
+
 }

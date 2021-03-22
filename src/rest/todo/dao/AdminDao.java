@@ -8,7 +8,7 @@ public class AdminDao {
     private static AdminDao instance = null;
     private final Map<String, Admin> contentProvider = new HashMap<>();
     private AdminDao() {
-        contentProvider.put("1", new Admin("Admin", Admin.hashPassword("admin")));
+        contentProvider.put("1", new Admin("admin", "admin"));
     }
 
     public static AdminDao getInstance() {
