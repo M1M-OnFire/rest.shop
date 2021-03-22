@@ -12,7 +12,7 @@ public class CategorieIdInItemDTO {
     private String categorieId;
 
     public Item getItem(){
-        return new Item(libelle, marque, prix, photo, description);
+        return new Item(libelle, prix, marque, photo, description);
     }
 
     public String getId() {
