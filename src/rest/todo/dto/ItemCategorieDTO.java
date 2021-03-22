@@ -6,6 +6,14 @@ public class ItemCategorieDTO {
     private String categorieId;
     private Item item;
 
+    public ItemCategorieDTO() {
+    }
+
+    public ItemCategorieDTO(String categorieId, Item item) {
+        this.categorieId = categorieId;
+        this.item = item;
+    }
+
     public String getCategorieId() {
         return categorieId;
     }
