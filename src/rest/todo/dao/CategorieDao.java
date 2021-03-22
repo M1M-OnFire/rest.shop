@@ -24,7 +24,7 @@ public class CategorieDao {
         Categorie telAccessoire = new Categorie("Accessoires telephone");
 
         Categorie disqueDur = new Categorie("Disque dur");
-        Categorie cleUSB = new Categorie("Clé usb");
+        Categorie cleUSB = new Categorie("Cle usb");
         Categorie accessoireStockage = new Categorie("Accessoires stockage");
 
 
@@ -40,6 +40,7 @@ public class CategorieDao {
         smartphone.addItem(ItemDao.getInstance().get("6"));
         smartphone.addItem(ItemDao.getInstance().get("7"));
         telAccessoire.addItem(ItemDao.getInstance().get("9"));
+        telFixe.addItem(ItemDao.getInstance().get("14"));
 
         //Stockage
         disqueDur.addItem(ItemDao.getInstance().get("10"));
