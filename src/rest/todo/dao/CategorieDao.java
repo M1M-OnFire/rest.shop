@@ -40,6 +40,7 @@ public class CategorieDao {
         smartphone.addItem(ItemDao.getInstance().get("6"));
         smartphone.addItem(ItemDao.getInstance().get("7"));
         telAccessoire.addItem(ItemDao.getInstance().get("9"));
+        telFixe.addItem(ItemDao.getInstance().get("14"));
 
         //Stockage
         disqueDur.addItem(ItemDao.getInstance().get("10"));
