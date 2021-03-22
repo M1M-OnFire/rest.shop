@@ -1,8 +1,6 @@
 package rest.todo.resources;
 
 import rest.todo.dao.AdminDao;
-import rest.todo.dao.ItemDao;
-import rest.todo.dto.ItemCategorieDTO;
 import rest.todo.model.Admin;
 
 import javax.ws.rs.*;
@@ -23,9 +21,10 @@ public class AdminRessource {
     @POST
     @Produces(MediaType.APPLICATION_JSON )
     @Consumes(MediaType.APPLICATION_JSON )
-    public Optional<Admin> connexion(Admin admin) {
+    public Admin connexion(Admin admin) {
         return AdminDao.getInstance().getModel().values().stream()
-                .filter(e -> e.getUsername().equals(admin.getUsername()) && e.getPassword().equals(admin.getPassword()))
-                .findFirst();
+            .filter(e -> e.getUsername().equals(admin.getUsername()) && e.getPassword().equals(admin.getPassword()))
+            .findFirst()
+            .orElse(null);
     }
 }
