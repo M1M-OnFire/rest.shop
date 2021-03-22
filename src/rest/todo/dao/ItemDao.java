@@ -17,7 +17,7 @@ public class ItemDao {
 
         data = new HashSet<>();
 
-        data.add(new Item("Macbook", "Apple", 1000));
+        data.add(new Item("Macbook", "Apple", 1000, "https://images.frandroid.com/wp-content/uploads/2020/11/apple-macbook-pro-13-2020-m1-frandroid.png", "Le dernier Macbook d'Apple !"));
         data.add(new Item("Zenbook", "Asus", 1050));
 
         data.add(new Item("Mac", "Apple", 1500));

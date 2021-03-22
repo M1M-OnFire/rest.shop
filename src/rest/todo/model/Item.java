@@ -27,6 +27,15 @@ public class Item {
         this.libelle = libelle;
     }
 
+    public Item(String libelle, String marque, double prix, String photo, String description) {
+        this();
+        this.marque = marque;
+        this.prix = prix;
+        this.libelle = libelle;
+        this.photo = photo;
+        this.description = description;
+    }
+
 
     public String getId() {
         return id;
