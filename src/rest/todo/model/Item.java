@@ -27,7 +27,7 @@ public class Item {
         this.libelle = libelle;
     }
 
-    public Item(String libelle, String marque, double prix, String photo, String description) {
+    public Item(String marque, double prix, String libelle, String photo, String description){
         this();
         this.marque = marque;
         this.prix = prix;
