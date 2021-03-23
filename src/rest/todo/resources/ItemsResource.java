@@ -5,6 +5,7 @@ import javax.ws.rs.core.*;
 
 import rest.todo.dao.CategorieDao;
 import rest.todo.dao.ItemDao;
+import rest.todo.dto.CategorieIdInItemDTO;
 import rest.todo.dto.CategorieInItemDTO;
 import rest.todo.dto.ItemCategorieDTO;
 import rest.todo.model.Item;
@@ -34,11 +35,12 @@ public class ItemsResource {
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response newItem(ItemCategorieDTO itemCategorieDTO) {
-        ItemDao.getInstance().add(itemCategorieDTO.getItem());
+    public Response newItem(CategorieIdInItemDTO categorieIdInItemDTO) {
+        Item item = categorieIdInItemDTO.getItem();
+        ItemDao.getInstance().add(item);
         CategorieDao.getInstance()
-                .get(itemCategorieDTO.getCategorieId())
-                .addItem(itemCategorieDTO.getItem());
+                .get(categorieIdInItemDTO.getCategorieId())
+                .addItem(item);
         return Response.status(201).build();
     }
 
